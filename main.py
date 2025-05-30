@@ -1,3 +1,4 @@
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -44,7 +45,18 @@ class Scraper:
 
         return " ".join(stavek)
 
+    def prevod_obratno(self, stavek: str) -> str:
+        slovar = self.remove_letters
+        obratno = {v: k for k, v in slovar.items()}
+        for i in stavek.lower().split(" "):
+            if i in obratno:
+                stavek = stavek.replace(i, obratno[i])
+        return stavek
+
 
 if __name__ == '__main__':
     scraper = Scraper()
     print(scraper.remove_letters)
+    print(scraper.prevod_obratno("pijan"))  # Example usage
+
+
